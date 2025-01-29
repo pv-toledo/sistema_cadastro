@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aluno: <%= alunoEncontrado.nome %></title>
+</head>
+<body>
+    <h2>Nome: <%= alunoEncontrado.nome %></h2>
+    <h2>Telefone: <%= alunoEncontrado.telefone %></h2>
+    <h2>Responsável: <%= alunoEncontrado.responsavel %></h2>
+    <h2>Instrumento: <a href="/alunos?instrumento=<%= alunoEncontrado.instrumento %>"><%= alunoEncontrado.instrumento %></a></h2>
+    <h2>Data de nascimento: <%= alunoEncontrado.nascimento %></h2>
+    <h2>Congregação: <%= alunoEncontrado.congregacao %></h2>
+    <h2>Endereço: <%= alunoEncontrado.endereco %></h2>
+    <a href="/alunos">Todos os alunos</a>
+    <a href="/alunos/<%= alunoEncontrado._id %>/editar">Editar</a>
+    <form action="/alunos/<%= alunoEncontrado._id %>?_method=DELETE" method="POST">
+        <button>Deletar</button>
+    </form>
+</body>
+</html>
