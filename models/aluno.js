@@ -37,8 +37,12 @@ const alunoSchema = new mongoose.Schema({
     },
 
     nascimento: {
-        type:Date,
+        type:String,
         required:true
+    },
+
+    idade: {
+        type:Number
     }
 })
 

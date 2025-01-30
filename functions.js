@@ -1,10 +1,16 @@
-function dataISO (data) {
+//função para calcular a idade de um aluno no dia atual com base na dada de nascimento inserida no formulário de cadastro
 
-    const regex = /^(\d{2})\/(\d{2})\/(\d{4})$/;
-    const match = data.match(regex);
+function idadeAluno (data) {
+    let [dia, mes, ano] = data.split('/'); //separa a string em três partes
+    let dataConvertida = new Date(`${ano}-${mes}-${dia}T00:00:00Z`); //converte para o modelo Date com a hora igual a meia noite
+    let hoje = new Date(Date.now()); //pega a data de hoje
 
-    let [, dia, mes, ano] = match;
-    return new Date(`${ano}-${mes}-${dia}T00:00:00.000Z`).toISOString();
+    let idade = hoje.getFullYear() - dataConvertida.getFullYear(); //subtração entre o ano completo de hoje e o ano completo de nascimento do aluno
+
+    if (hoje.getMonth() < dataConvertida.getMonth() || (hoje.getMonth() === dataConvertida.getMonth() && hoje.getDate() < dataConvertida.getDate())) { //se não estiver no mês de aniversário do aluno ou, se estivermos e o dia de hoje for menor que o dia de aniversário, subtrai 1 da idade calculada, pois o aninversário do ano corrente ainda não aconteceu
+        idade --;
+    }
+
+    return idade
 }
-
-module.exports = {dataISO};
+module.exports = {idadeAluno};

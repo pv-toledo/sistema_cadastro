@@ -18,14 +18,22 @@ const seeds = [
     {
         nome: 'Paulo',
         telefone: 24999999999,
-        responsavel: 'o proprio'
+        responsavel: 'o proprio',
+        instrumento: 'clarinete',
+        congregacao: 'sede',
+        endereco: 'rua guilherme viana, 151',
+        nascimento:'07/06/1998'
         
     },
 
     {
         nome: 'Marcilei',
         telefone: 24988888888,
-        responsavel: 'Cláudio'
+        responsavel: 'Cláudio',
+        instrumento: 'saxofone',
+        congregacao: 'sede',
+        endereco: 'rua guilherme viana, 151',
+        nascimento:'07/06/1968'
     }
 ];
 

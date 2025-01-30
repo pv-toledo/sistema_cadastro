@@ -2,7 +2,7 @@ const express = require('express'); //requisitar express
 const mongoose = require('mongoose'); //requisitar mongoose para conectar com mongoDB
 const path = require('path'); //path para poder utilizar a pasta de views em qualquer lugar
 const methodOverride = require('method-override'); //method-override para fazer post de formulário ser lida como delete, put ou patch
-const {dataISO} = require('./functions'); //importa a função de formatar data
+const { idadeAluno } = require('./functions'); //importa a função de formatar data
 
 const app = express(); //definir app como o executável do express
 
@@ -42,17 +42,15 @@ app.listen(3000, () => {
 
 app.get('/alunos', async (req, res) => {
     const {instrumento} = req.query;
-    console.log(instrumento);
-
     if (instrumento) {
-        const alunos = await Aluno.find({instrumento});
+        const alunos = await Aluno.find({ instrumento });
         console.log(alunos);
-        res.render('alunos/index', { alunos, instrumento });
+        res.render('alunos/index', { alunos, instrumento, instrumentos });
 
     } else {
 
-    const alunos = await Aluno.find({});
-    res.render('alunos/index', { alunos, instrumento });
+        const alunos = await Aluno.find({});
+        res.render('alunos/index', { alunos, instrumento, instrumentos });
 
     }
 })
@@ -63,7 +61,7 @@ app.get('/alunos/novo', (req, res) => {
     res.render('alunos/novo', { instrumentos });
 })
 
-//post request para salva na DB o aluno que foi cadastrado
+//post request para salva na DB o novo aluno que foi cadastrado
 
 //os dados passados pelo formulário são acessados através do req.body, onde se cria um novo aluno utilizando o modelo 'Aluno'
 
@@ -71,6 +69,7 @@ app.get('/alunos/novo', (req, res) => {
 
 app.post('/alunos', async (req, res) => {
     const novoAluno = new Aluno(req.body);
+    novoAluno.idade = idadeAluno(novoAluno.nascimento);
     await novoAluno.save()
     res.redirect('/alunos');
 })
