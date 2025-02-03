@@ -1,41 +1,62 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editando aluno: <%= alunoEncontrado.nome %></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/editar.css">
+    <title>Editando aluno: <%= alunoEncontrado.nome %>
+    </title>
 </head>
+
 <body>
-    <form action="/alunos/<%= alunoEncontrado._id %>?_method=PUT" method="POST"> <!--mandar para a rota que está definida o detalhe do aluno em específico (detalhes.ejs), nesse caso é o /alunos/:id -->
-        <label for="nome">Nome: </label>
-        <input type="text" name="nome" id="nome" placeholder="nome do aluno" value="<%= alunoEncontrado.nome %>">
-        
-        <label for="responsavel">Responsável: </label>
-        <input type="text" name="responsavel" id="responsavel" placeholder="responsavel do aluno" value="<%= alunoEncontrado.responsavel %>">
+    <h1>Editando aluno: <%= alunoEncontrado.nome %></h1>
+    <div class="content">
+        <form action="/alunos/<%= alunoEncontrado._id %>?_method=PUT" method="POST">
+            <!--mandar para a rota que está definida o detalhe do aluno em específico (detalhes.ejs), nesse caso é o /alunos/:id -->
+            <label for="nome">Nome: </label>
+            <input type="text" name="nome" id="nome" placeholder="nome do aluno" value="<%= alunoEncontrado.nome %>">
 
-        <label for="telefone">Telefone: </label>
-        <input type="number" name="telefone" id="telefone" placeholder="telefone do aluno" value="<%= alunoEncontrado.telefone %>">
+            <label for="responsavel">Responsável: </label>
+            <input type="text" name="responsavel" id="responsavel" placeholder="responsavel do aluno"
+                value="<%= alunoEncontrado.responsavel %>">
 
-        <label for="nascimento">Data de nascimento: </label>
-        <input type="text" name="nascimento" id="nascimento" placeholder="Data de nascimento" value="<%= alunoEncontrado.nascimento %>">
-        
-        <label for="congregacao">Congregação: </label>
-        <input type="text" name="congregacao" id="congregacao" placeholder="congregação" value="<%= alunoEncontrado.congregacao %>">
+            <label for="telefone">Telefone: </label>
+            <input type="number" name="telefone" id="telefone" placeholder="telefone do aluno"
+                value="<%= alunoEncontrado.telefone %>">
 
-        <label for="endereco">Endereço: </label>
-        <input type="text" name="endereco" id="endereco" placeholder="endereço" value="<%= alunoEncontrado.endereco %>">
+            <label for="nascimento">Data de nascimento: </label>
+            <input type="text" name="nascimento" id="nascimento" placeholder="Data de nascimento"
+                value="<%= alunoEncontrado.nascimento %>">
 
-        <label for="instrumento">Instrumento: </label>
-        <select name="instrumento" id="instrumento">
+            <label for="congregacao">Congregação: </label>
+            <input type="text" name="congregacao" id="congregacao" placeholder="congregação"
+                value="<%= alunoEncontrado.congregacao %>">
 
-            <!--Lógica para mostrar no select o instrumento do aluno que foi cadastrado originalmente-->
-            <% for (let instrumento of instrumentos) { %> 
-                <option value="<%= instrumento%>" <%= alunoEncontrado.instrumento === instrumento ? 'selected':''  %>><%= instrumento%></option>
-            <% } %>
+            <label for="endereco">Endereço: </label>
+            <input type="text" name="endereco" id="endereco" placeholder="endereço"
+                value="<%= alunoEncontrado.endereco %>">
 
-        </select>
-        
-        <button>Salvar</button>
-    </form>
+            <label for="instrumento">Instrumento: </label>
+            <select name="instrumento" id="instrumento">
+
+                <!--Lógica para mostrar no select o instrumento do aluno que foi cadastrado originalmente-->
+                <% for (let instrumento of instrumentos) { %>
+                    <option value="<%= instrumento%>" <%=alunoEncontrado.instrumento===instrumento ? 'selected' :'' %>>
+                        <%= instrumento%>
+                    </option>
+                    <% } %>
+
+            </select>
+
+            <button>Salvar</button>
+        </form>
+    </div>
 </body>
+
 </html>

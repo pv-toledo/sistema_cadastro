@@ -3,39 +3,57 @@
 <head>
     <meta charset=" UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+    rel="stylesheet">
+<link rel="stylesheet" href="/index.css">
 <title>Alunos</title>
 </head>
 
 <body>
-   <h1><%= instrumento ? `Alunos de ${instrumento}`:`Todos os alunos`%></h1> <!--Lógica para mostrar o título dependendo do conteúdo da página-->
+    <div class="container">
+        <h1>
+            <%= instrumento ? `Alunos de ${instrumento}`:`Todos os alunos`%>
+        </h1> <!--Lógica para mostrar o título dependendo do conteúdo da página-->
 
-    <!-- formulário para filtrar os alunos por instrumento na página principal (index.ejs) -->
-    <!-- o form manda um get request como nome do instrumento selecionado na option numa query "?instrumento=..." -->
+        <!-- formulário para filtrar os alunos por instrumento na página principal (index.ejs) -->
+        <!-- o form manda um get request como nome do instrumento selecionado na option numa query "?instrumento=..." -->
+        <div class="seletores">
+            <form action="/alunos" method="GET">
+                <!-- <label for="instrumento">Instrumento: </label> -->
+                <select name="instrumento" id="instrumento">
+                    <option value="">Todos os instrumentos</option>
+                    <!--opção para selecionar todos os intrumentos, não envia nada na query -->
 
-   <form action="/alunos" method="GET">
-   <label for="instrumento">Instrumento: </label>
-    <select name="instrumento" id="instrumento">
-       <option value="">Todos os instrumentos</option>  <!--opção para selecionar todos os intrumentos, não envia nada na query -->
-        
-            <% for (let inst of instrumentos) { %>
-                <option value="<%= inst%>" <%= inst === instrumento ? 'selected':'' %>> <%= inst%>  </option>
-            <% } %>
+                    <% for (let inst of instrumentos) { %>
+                        <option value="<%= inst%>" <%=inst===instrumento ? 'selected' :'' %>> <%= inst%>
+                        </option>
+                        <% } %>
 
-    </select>
+                </select>
 
-        <button>Filtrar</button>
-    </form>
+                <button>Filtrar</button>
+            </form>
+            <a href="/alunos/novo"><button>Novo aluno</button></a>
 
-    <ul>
-        <% for (let aluno of alunos) { %>
-            <li><a href="/alunos/<%= aluno._id %>">
-                    <%= aluno.nome %>
-                </a></li>
-        <% } %>
-    </ul>
-    <a href="/alunos/novo">Novo aluno</a>
+        </div>
+        <ul>
 
-   
+            <% for (let aluno of alunos) { %>
+                <li>
+                    <a href="/alunos/<%= aluno._id %>">
+                        <%= aluno.nome %>
+                    </a>
+                </li>
+                <% } %>
+
+        </ul>
+
+
+
+    </div>
 </body>
 
 </html>

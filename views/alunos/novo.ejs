@@ -4,41 +4,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/novo.css">
     <title>Novo aluno</title>
 </head>
 
 <body>
-    <form action="/alunos" method="POST"> <!--mandar para a rota que está definida a página principal (index.ejs), nesse caso é o /alunos -->
-        <label for="nome">Nome: </label>
-        <input type="text" name="nome" id="nome" placeholder="nome do aluno">
-        
-        <label for="responsavel">Responsável: </label>
-        <input type="text" name="responsavel" id="responsavel" placeholder="responsavel do aluno">
 
-        <label for="telefone">Telefone: </label>
-        <input type="number" name="telefone" id="telefone" placeholder="telefone do aluno">
-
-        <label for="nascimento">Data de nascimento: </label>
-        <input type="text" name="nascimento" id="nascimento" placeholder="Data de nascimento">
-        
-        <label for="congregacao">Congregação: </label>
-        <input type="text" name="congregacao" id="congregacao" placeholder="congregação">
-
-        <label for="endereco">Endereço: </label>
-        <input type="text" name="endereco" id="endereco" placeholder="endereço">
-
-        <label for="instrumento">Instrumento: </label>
-        <select name="instrumento" id="instrumento">
-
-            <% for (let instrumento of instrumentos) { %>
-                <option value="<%= instrumento%>"><%= instrumento%></option>
-            <% } %>
-
-        </select>
-
-        <button>Cadastrar</button>
-    </form>
     <a href="/alunos">Todos os alunos</a>
+    <h1>Cadastrar novo aluno</h1>
+    <div class="content">
+        <form action="/alunos" method="POST">
+            <!--mandar para a rota que está definida a página principal (index.ejs), nesse caso é o /alunos -->
+
+
+            <label for="nome">Nome: </label>
+            <input type="text" name="nome" id="nome" placeholder="nome do aluno">
+
+            <label for="responsavel">Responsável: </label>
+            <input type="text" name="responsavel" id="responsavel" placeholder="responsavel do aluno">
+
+            <label for="telefone">Telefone: </label>
+            <input type="number" name="telefone" id="telefone" placeholder="telefone do aluno">
+
+
+            <label for="nascimento">Data de nascimento: </label>
+            <input type="text" name="nascimento" id="nascimento" placeholder="Data de nascimento">
+
+            <label for="congregacao">Congregação: </label>
+            <input type="text" name="congregacao" id="congregacao" placeholder="congregação">
+
+            <label for="endereco">Endereço: </label>
+            <input type="text" name="endereco" id="endereco" placeholder="endereço">
+
+
+
+
+            <label for="instrumento">Instrumento: </label>
+            <select name="instrumento" id="instrumento">
+
+                <% for (let instrumento of instrumentos) { %>
+                    <option value="<%= instrumento%>">
+                        <%= instrumento%>
+                    </option>
+                    <% } %>
+
+            </select>
+
+            <button>Cadastrar</button>
+
+        </form>
+    </div>
+
+
 </body>
 
 </html>

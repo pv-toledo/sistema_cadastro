@@ -1,0 +1,76 @@
+body {
+    background-image: url('45-degree-fabric--light--1920x1080.png');
+    font-family: "Montserrat", serif;
+    display: flex;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    margin: 15px;
+    min-width: 35vw;
+
+}
+
+.container h1 {
+    font-size: 4rem;
+}
+
+.container .seletores {
+    display: flex;
+    justify-content: space-between;
+}
+
+.container .seletores a {
+    justify-self: flex-end;
+}
+
+
+.container select {
+    background-color: #ebebeb;
+    border: 2px solid black;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    font-family: inherit;
+    font-size: 1.5rem;
+    font-weight: 600;
+    
+}
+
+.container button {
+    border: 2px solid black;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    font-family: inherit;
+    font-size: 1.5rem;
+    font-weight: 600;
+    
+    background-color: #ebebeb;
+
+}
+
+.container button:hover {
+    cursor: pointer;
+
+}
+
+
+.container ul li a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container ul li a:hover {
+    text-decoration: underline;
+}
+
+.container ul li {
+    margin-block: 1rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+

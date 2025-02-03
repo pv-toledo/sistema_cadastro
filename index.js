@@ -13,6 +13,7 @@ app.set('view engine', 'ejs')                  //////  como .ejs (embeded javasc
 
 app.use(express.urlencoded({ extended: true })); //utilizado para conseguir ler o resultado de formulários
 app.use(methodOverride('_method')) //definindo a query string para ser utilizada no method-override
+app.use(express.static(path.join(__dirname, 'styles'))); //para compartilhar os arquivos CSS
 
 mongoose.connect('mongodb://127.0.0.1:27017/cadastroAlunos') //porta padrão do mongoDB no local e criando ou acessando o DB cadastroAlunos
     .then(() => {

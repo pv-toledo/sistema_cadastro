@@ -45,4 +45,3 @@ const seeds = [
 Aluno.insertMany(seeds)
 .then(res => {console.log(res)})
 .catch(err => {console.log(err)})
-
