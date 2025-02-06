@@ -2,7 +2,7 @@ const express = require('express'); //requisitar express
 const mongoose = require('mongoose'); //requisitar mongoose para conectar com mongoDB
 const path = require('path'); //path para poder utilizar a pasta de views em qualquer lugar
 const methodOverride = require('method-override'); //method-override para fazer post de formulário ser lida como delete, put ou patch
-const { idadeAluno } = require('./functions'); //importa a função de formatar data
+const { idadeAluno, primeiraLetraMaiuscula } = require('./functions'); //importa a função para calcular a idade do aluno e capitalizar a primeira letra de uma palavra
 
 const app = express(); //definir app como o executável do express
 
@@ -28,6 +28,8 @@ const Aluno = require('./models/aluno'); //importando o modelo de aluno
 
 let instrumentos = ["clarinete", "saxofone", "flauta transversa", "violino", "violoncelo", "trompete", "trombone", "trompa", "teclado", "violao", "guitarra", "bateria", "canto"];
 
+let mesesLetivos = ['marco', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro']
+
 //conectando o servidor na porta 3000
 app.listen(3000, () => {
     console.log('Listening on 3000')
@@ -42,7 +44,7 @@ app.listen(3000, () => {
 //importante a ordem dos parâmetros da função seguir a ordem (req, res)
 
 app.get('/alunos', async (req, res) => {
-    const {instrumento} = req.query;
+    const { instrumento } = req.query;
     if (instrumento) {
         const alunos = await Aluno.find({ instrumento });
         console.log(alunos);
@@ -95,13 +97,6 @@ app.put('/alunos/:id', async (req, res) => {
     res.redirect(`/alunos/${id}`);
 })
 
-//get request para acessar um formulário no qual os inputs já têm os valores previamente salvos do aluno, podendo apenas modificar e salvar novamente. Esses dados são enviados para a put request, que atualiza o perfil do aluno
-
-app.get('/alunos/:id/editar', async (req, res) => {
-    const { id } = req.params;
-    const alunoEncontrado = await Aluno.findById(id);
-    res.render('alunos/editar', { alunoEncontrado, instrumentos });
-})
 
 //rota para exibir os detalhes do aluno, visto que na página principal aparece apenas o nome
 
@@ -116,3 +111,41 @@ app.get('/alunos/:id', async (req, res) => {
     res.render('alunos/detalhes', { alunoEncontrado });
 })
 
+//get request para acessar um formulário no qual os inputs já têm os valores previamente salvos do aluno, podendo apenas modificar e salvar novamente. Esses dados são enviados para a put request, que atualiza o perfil do aluno
+
+app.get('/alunos/:id/editar', async (req, res) => {
+    const { id } = req.params;
+    const alunoEncontrado = await Aluno.findById(id);
+    res.render('alunos/editar', { alunoEncontrado, instrumentos });
+})
+
+
+//para ir para o dash de pagamento
+app.get('/alunos/:id/pagamento', async (req, res) => {
+    const { id } = req.params;
+    const alunoEncontrado = await Aluno.findById(id);
+    res.render('alunos/pagamento', { alunoEncontrado, mesesLetivos, primeiraLetraMaiuscula});
+})
+
+app.get('/alunos/:id/pagamento/mes', async (req, res) => {
+    const { id } = req.params;
+    const { mes } = req.query;
+    const alunoEncontrado = await Aluno.findById(id);
+    res.render('alunos/pagamento-mes', { alunoEncontrado, mes });
+})
+
+app.post('/alunos/:id/pagamento', async (req, res) => {
+    const { id } = req.params;
+    const {mes, finalidade, dataAcerto, valor} = req.body;
+
+    await Aluno.findByIdAndUpdate(id, {$set: {[`mensalidade.${mes}`]: {data: dataAcerto, valor:valor}}})
+
+    res.redirect(`/alunos/${id}/pagamento`);
+})
+
+app.get('/alunos/:id/pagamento/mes/editar', async (req, res) => {
+    const { id } = req.params;
+    const { mes } = req.query;
+    const alunoEncontrado = await Aluno.findById(id);
+    res.render('alunos/editar-pagamento-mes', { alunoEncontrado, mes });
+})

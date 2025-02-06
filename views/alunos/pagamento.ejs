@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+    rel="stylesheet">
+    <link rel="stylesheet" href="/pagamento.css">
+    <title>Dash Pagamento</title>
+</head>
+
+<body>
+    <div class="link"> <a class="voltar" href="/alunos/<%=alunoEncontrado._id%>">Detalhes</a></div>
+   
+
+    <div class="cards">
+
+        <% for (let mes of mesesLetivos) { %>
+
+            <div class="container">
+                <% if (mes ==='marco') { %>
+
+                    <h2>Março</h2>
+
+                <% } else {%>
+
+                <h2><%=primeiraLetraMaiuscula(mes) %></h2>
+
+                <% } %>
+                <div class="info">
+                    <% if(alunoEncontrado.mensalidade.has(mes)) {%>
+                        <div class="dados-pago">
+                            <p><b>Data do acerto:</b> <%=alunoEncontrado.mensalidade.get(mes).data%></p>
+                            <p><b>Valor acertado:</b> R$ <%=alunoEncontrado.mensalidade.get(mes).valor%> </p>
+                        </div>
+                        <div class="botao">
+                            <a href="/alunos/<%=alunoEncontrado._id%>/pagamento/mes/editar?mes=<%=mes%>"><button>Editar</button></a>
+                        </div>
+                    <% } else {%>
+                        <div class="dados-naopago">
+                            <p>Mensalidade em aberto</p>
+                        </div>
+                        <div class="botao">
+                            <a href="/alunos/<%=alunoEncontrado._id%>/pagamento/mes?mes=<%=mes%>"><button>Lançar mensalidade</button></a>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+
+        <% } %>
+    </div>
+
+
+</body>
+
+</html>

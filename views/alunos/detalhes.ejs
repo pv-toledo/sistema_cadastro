@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,24 +10,46 @@
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="/detalhes.css">
-    <title>Aluno: <%= alunoEncontrado.nome %></title>
+    <title>Aluno: <%= alunoEncontrado.nome %>
+    </title>
 </head>
+
 <body>
-    <a href="/alunos">Todos os alunos</a>
-    <h1>Detalhes do aluno</h1>
-    <div><span class="chave"> Nome: </span> <span class="info"><%= alunoEncontrado.nome %></span></div>
-    <div><span class="chave"> Telefone: </span> <span class="info"><%= alunoEncontrado.telefone %></span></div>
-    <div><span class="chave"> Responsável: </span> <span class="info"><%= alunoEncontrado.responsavel %></span></div>
-    <div><span class="chave"> Instrumento: </span><span class="info"><%= alunoEncontrado.instrumento %></span></div>
-    <div><span class="chave"> Data de nascimento: </span class="info"> <span><%=alunoEncontrado.nascimento%></span></div>
-    <div><span class="chave"> Idade: </span> <span class="info"><%= alunoEncontrado.idade %></span></div>
-    <div><span class="chave"> Congregação: </span> <span class="info"><%= alunoEncontrado.congregacao %></span></div>
-    <div><span class="chave"> Endereço: </span> <span class="info"><%= alunoEncontrado.endereco %></span></div>
-    
-    
-    <form action="/alunos/<%= alunoEncontrado._id %>?_method=DELETE" method="POST">
+    <div class="info">
+        <a href="/alunos">Todos os alunos</a>
+        <h1>Detalhes do aluno</h1>
+        <div><span class="chave"> Nome: </span> <span class="info">
+                <%= alunoEncontrado.nome %>
+            </span></div>
+        <div><span class="chave"> Telefone: </span> <span class="info">
+                <%= alunoEncontrado.telefone %>
+            </span></div>
+        <div><span class="chave"> Responsável: </span> <span class="info">
+                <%= alunoEncontrado.responsavel %>
+            </span></div>
+        <div><span class="chave"> Instrumento: </span><span class="info">
+                <%= alunoEncontrado.instrumento %>
+            </span></div>
+        <div><span class="chave"> Data de nascimento: </span class="info"> <span>
+                <%=alunoEncontrado.nascimento%>
+            </span></div>
+        <div><span class="chave"> Idade: </span> <span class="info">
+                <%= alunoEncontrado.idade %>
+            </span></div>
+        <div><span class="chave"> Congregação: </span> <span class="info">
+                <%= alunoEncontrado.congregacao %>
+            </span></div>
+        <div><span class="chave"> Endereço: </span> <span class="info">
+                <%= alunoEncontrado.endereco %>
+            </span></div>
+
         <a href="/alunos/<%= alunoEncontrado._id %>/editar"><button>Editar</button></a>
-        <button id="delete">Deletar</button>
-    </form>
+        <a href="/alunos/<%= alunoEncontrado._id %>/pagamento"><button>Pagamento</button></a>
+        <form action="/alunos/<%= alunoEncontrado._id %>?_method=DELETE" method="POST">
+
+            <button id="delete">Deletar</button>
+        </form>
+    </div>
 </body>
+
 </html>

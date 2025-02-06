@@ -1,5 +1,13 @@
 const mongoose = require('mongoose');
 
+// const mensalidadeSchema = mongoose.Schema({
+//     meses: {
+//         type:Map,
+//         of: Number,
+//         default:new Map()
+//     }
+// })
+
 
 //criando o schema para ser utilizado na criação do modelo
 const alunoSchema = new mongoose.Schema({
@@ -35,7 +43,6 @@ const alunoSchema = new mongoose.Schema({
         required:true,
         lowercase:true
     },
-
     nascimento: {
         type:String,
         required:true
@@ -43,6 +50,22 @@ const alunoSchema = new mongoose.Schema({
 
     idade: {
         type:Number
+    },
+
+    mensalidade: {
+        
+        type:Map,
+
+        of: new mongoose.Schema({
+            data: {
+                type:String
+            },
+            valor: {
+                type:Number
+            }
+        }),
+
+        default: new Map()
     }
 })
 

@@ -13,4 +13,8 @@ function idadeAluno (data) {
 
     return idade
 }
-module.exports = {idadeAluno};
+
+function primeiraLetraMaiuscula (txt) {
+    return txt.charAt(0).toUpperCase() + txt.slice(1)
+}
+module.exports = {idadeAluno, primeiraLetraMaiuscula};

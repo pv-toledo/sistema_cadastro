@@ -8,6 +8,10 @@ body {
 
 }
 
+.info {
+    margin: 1rem;
+}
+
 a {
     color: white;
     text-decoration: none;

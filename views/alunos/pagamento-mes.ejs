@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento</title>
+</head>
+<body>
+    <form action="/alunos/<%=alunoEncontrado._id%>/pagamento" method="POST">
+        <input type="hidden" name="mes" value="<%=mes%>">
+        <label for="finalidade">Pagamento de: </label>
+        <select name="finalidade" id="finalidade">
+            <option value="mensalidade">Mensalidade</option>
+            <option value="taxa_manutencao">Taxa de manutenção</option>
+        </select>
+        <label for="dataAcerto">Data do pagamento:</label>
+        <input type="text" name="dataAcerto" id="dataAcerto" placeholder="Data do pagamento">
+        <label for="valor">Valor (R$):</label>
+        <input type="number" name="valor" id="valor" placeholder="Valor">
+        <button>Salvar</button>
+    </form>
+</body>
+</html>

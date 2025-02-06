@@ -1,0 +1,88 @@
+body {
+    background-image: url('45-degree-fabric--light--1920x1080.png');
+    font-family: "Montserrat", serif;
+    display: flex;
+    height: 100vh;
+    flex-wrap: wrap;
+    /* align-items: center; */
+    margin: 0;
+    padding: 0;
+    color: black;
+    position: relative;
+
+}
+.link {
+    display: flex;
+    flex-grow: 0;
+    position: absolute;
+    margin: 10px;
+    
+}
+
+.link a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+}
+
+.link a:hover {
+    text-decoration: underline;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    position: absolute;
+    align-self: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    background-color: #ebebeb;
+    width: 15rem;
+    height: 18rem;
+    margin: 10px;
+    border-radius: 1rem;
+}
+
+.container h2 {
+    text-align: center;
+}
+
+.container .info {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between;
+    margin-inline: 0.5rem;
+}
+
+.dados-naopago {
+    text-align: center;
+    
+}
+
+.botao {
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+button {
+    margin-bottom: 1rem;
+    padding: 0.2rem;
+    font-family: inherit;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.voltar {
+    display: block;
+}
+
+
